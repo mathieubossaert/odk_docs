@@ -1,7 +1,7 @@
 :og:image: https://docs.getodk.org/_static/img/tutorial-community-reporting.png
 
-Entities tutorial: Community reporting
-========================================
+Tutoriel sur les Entités : Signalements de problèmes
+====================================================
 
 De nombreuses organisations utilisent des formulaires pour recueillir divers signalements de la part de leurs communautés :
 
@@ -45,14 +45,14 @@ Nous aimerions que les signalements soit disponibles dans un autre formlulaire a
 
 Démarrons en prenant notre :ref:`Report a problem <tutorial-entities-capture-problem>` formulaire existant et faisons lui créer des Entités qui représenteront les problèmes signalés.
 
-#. Ouvrez ou créez la feulle ``entities`` dans le formualire ``Report a problem``.
+#. Ouvrez ou créez la feulle ``entities`` dans le formualire ``Signaler un problème``.
 #. Dans la colonne ``list_name``, entrez le nom de la Liste d'Entités dans laquelle vous souhaitez créer des Entités : ``problems``. Ce nom sera généralement un nompluriel représentant une collection des objets que vous souhaitez paratger entre vos formulaires. 
 #. Dans la colonne ``label``, entrez une expression qui définira l'étiquette de chaque signalement : ``${problem_title}``. Cette étiquerre sera utilisée dans Cnetral pour identifier chaque entité ainsi que dans les selections définies dans les formulaires de suivi.
 
 Ces ajouts entraineront, à chaque soumission de formulaire, la création d'entités ``problems`` avec une étiquette définie par l'utilisateur et un identifiant unique généré automatiquement. Dans ce cas, vous voulez aussi rendre disponible les détails et la localisation du problème dans les formualires de suivi..
 
-#. Ouvrez la feuille ``survey`` du formualire ``Report a problem``.
-#. Trouvez ou ajoutez la colonne ``save_to`` (Elle n'est pas présente par défaut dans le :doc:`XLSForm template <xlsform>`).
+#. Ouvrez la feuille ``survey`` du formualire ``Signaler un problème``.
+#. Trouvez ou ajoutez la colonne ``save_to`` (Elle n'est pas présente par défaut dans le :doc:`modèle de XLSForm<xlsform>`).
 #. Dans la colonne ``save_to`` du champ de formulaire qui capture la description du signalement, entrez le nom de la propriété de l'Entité où stocker cette valeur : ``details``
 #. Dans la colonne ``save_to`` du champ de formulaire qui capture la localisation du signalement, entrez le nom de la propriété de l'Entité où stocker cette valeur : ``geometry``. Utiliser le nom particulier ``geometry`` pour cette propriété vous pemrettra d'afficher les ``problems`` sur une carte dans le formualire de suivi (voir :ref:`select one from map <select-from-map>`).
 
@@ -80,94 +80,94 @@ Actuellement les entités ne peuvent être créées en mode "Ebauche de formulai
 #. Rafraichissez la table des soumissions pour voir les nouvelles puis cliquez sur le bouton :guilabel:`More` de l'une d'entre elles pour en afficher les détails. Vous devriez voir que cette soumission a créé une Entité dans la liste ``problems`` :
 
    .. image:: /img/tutorial-community-reporting/problem-report-submission.*
-     :alt: Détail d'une soumission du formulaire ``Report a problem`` qui a créé une Entité.
+     :alt: Détail d'une soumission du formulaire ``Signaler un problème`` qui a créé une Entité.
 
 Afficher les problèmes signalés sur une carte
 ---------------------------------------------
 
 Créons maintenant un second formulaire qui sera utilisé par les employés municipaux pour voir les signalements sur une carte.
 
-#. Créez un nouveau formualire à partir du :doc:`modèle XLSForm <xlsform>`. Nommez le fichier ``Address a problem``.
+#. Créez un nouveau formualire à partir du :doc:`modèle de XLSForm <xlsform>`. Nommez le fichier ``Address a problem``.
 #. Allez dans la feuille ``settings``.
 #. Dans la colonne ``form_title``, renseignez un titre qui sera lu par les utilisateurs du formulaire : ``Address a problem``
-#. In the ``form_id`` column, put an ID that uniquely identifies this form: ``address_problem``
-#. Add a field list group to show multiple questions on a single screen:
+#. Dans la colonne ``form_id``, insérez un identifiant qui identifie de manière unique ce formulaire : ``address_problem``
+#. Ajouter un groupe contenant une "liste de champs" pour afficher plusieurs questions sur un même écran:
 
    #. Allez à la feuille ``survey``.
    #. Dans la colonne ``type``, entrez ``begin_group``
    #. Dans la colonne ``name``, entrez ``entity``
    #. Dans la colonne ``appearance``, entrez ``field-list``
-#. Add a select question that shows all reported problems on a map:
+#. Ajoutez une question permettant de sélectionner les problèmes reportés sur une carte :
 
-   #. Dans la colonne ``type``, entrez ``select_one_from_file problems.csv`` which will automatically link to the ``problems`` Entity List because of the ``problems.csv`` filename.
+   #. Dans la colonne ``type``, entrez ``select_one_from_file problems.csv`` qui sera automatiquement liée à la liste d'Entités ``problems`` du fait de l'emploi du nom de fichier ``problems.csv``.
       
       .. warning::
-         The filename specified is case-sensitive and it must exactly match the Entity List name specified in the problem reporting form or the two forms will not share Entities.
+         Le nom de fichier spécifié est sensible à la casse et doit correspondre exactement au nom de la Liste d'Entités utilisé dans le formulaire de signalement de problèmes, sinon les deux formulaires ne partageront pas d'Entités.
 
    #. Dans la colonne ``name``, entrez ``problem``
    #. Dans la colonne ``appearance``, entrez ``map``
-#. Add a note question to show the selected problem's details:
+#. Ajoutez une question de type note pour afficher les détails du signalement sélectionné :
   
    #. Dans la colonne ``type``, entrez ``note``
    #. Dans la colonne ``name``, entrez ``problem_details``
-   #. Dans la colonne ``label``, entrez ``Details: instance('problems')/root/item[name=${problem}]/details``
+   #. Dans la colonne ``label``, entrez ``Détails : instance('problems')/root/item[name=${problem}]/details``
 
       .. note::
-         Don't worry if this part looks unfamiliar. Copy it as is, and after you finish the tutorial, you can learn more in the ``List lookups`` sheet in the :doc:`XLSForm template <xlsform>`.
+      	 Ne vous inquiétez pas si cela ne vous est pas familier. Copier le code tel qu'il est, vous pourrez en apprendre plus dans la feuille ``List lookups`` du :doc:`modèle de XLSForm<xlsform>`.
 
-#. Close the field list group:
+#. Fermer le groupe de "liste de champs" :
 
    #. Dans la colonne ``type``, entrez ``end_group``
-#. Upload the form to Central in the same project as the ``Report a problem`` form and try its draft. If you use the draft QR code in the Collect mobile app, you will see a map of all reported problems. If you use a web form for testing, you will see a list of reported problems by label (because select from map is not yet implemented).
+#. Chargez le formulaire sur Central dans le même projet que le formulaire ``Signaler un problème`` et essayez ce problème. Si vous utilisez le QR code de l'ébauche dans l'application mobile Collect, vous verrez une carte de tous les signalements. Si vous utilisez le formulaire web pour tester, vous verrez une liste des signalements identifiés par leur étiquette (parce que la selection sur carte n'est pas encore implémentée dans enketo)
 
-You can now view reported problems! When a new problem is reported, it will appear in the follow-up form the next time the form is updated. If you're online, updates typically happen automatically every 15 minutes.
+Vous pouvez maintenant voir les problèmes signalés sur une carte ! Quand un nouveau problème sera signalé, il apparaitra dans le formulaire de suivi dés qu'il sera mis à jour. Si vous êtes en ligne, les mises  à jour sont réalisées automatiquement toutes les 15 minutes.
 
-Capture information about the action taken
--------------------------------------------
+Collecte des informations à propos des mesures prises
+-----------------------------------------------------
 
-You can now add to the ``Address problem`` form to capture information about any actions that the town employee takes.
+Vous pouvez maintenant compléter le formulaire ``Résoudre un problème`` pour collecter des informations à propos des actions réalisées par les employés municipaux.
 
-#. Add a field list group to show multiple questions on a single screen:
+#. Ajoutez un groupe contenant une liste de champs pour afficher plusieurs questions sur un même écran :
 
    #. Allez à la feuille ``survey``.
    #. Dans la colonne ``type``, entrez ``begin_group``
    #. Dans la colonne ``name``, entrez ``action``
    #. Dans la colonne ``appearance``, entrez ``field-list``
-#. Add a text question to get a description of the action taken:
+#. Ajoutez une question de type "texte" pour décrire l'action entreprise :
 
    #. Dans la colonne ``type``, entrez ``text``
    #. Dans la colonne ``name``, entrez ``action_taken``
    #. Dans la colonne ``label``, entrez ``Describe the action you have taken``
-#. Add a select question to get the new status of the problem:
+#. Ajoutez une question de type "select" pour définir le nouveau statut du problème :
 
    #. Dans la colonne ``type``, entrez ``select_one statuses``
    #. Dans la colonne ``name``, entrez ``status``
    #. Dans la colonne ``label``, entrez ``What is the problem status after your action?``
-#. Go to the ``choices`` sheet.
-#. Add a choice for actions that address the problem:
+#. Allez à la feuille ``choices``.
+#. Ajoutez une option pour les problèmes résolus :
 
    #. Dans la colonne ``list_name``, entrez ``statuses``
-   #. Dans la colonne ``name``, entrez ``addressed``
-   #. Dans la colonne ``label``, entrez ``Addressed``
-#. Add a choice for actions that don't fully address the problem:
+   #. Dans la colonne ``name``, entrez ``resolu``
+   #. Dans la colonne ``label``, entrez ``Résolu``
+#. Ajoutez une option pour les problèmes partiellement résolus nécessitant un suivi :
 
    #. Dans la colonne ``list_name``, entrez ``statuses``
    #. Dans la colonne ``name``, entrez ``needs_followup``
    #. Dans la colonne ``label``, entrez ``Needs follow-up``
-#. Update your draft in Central and try it out to make sure it works as intended.
+#. Mettez à jour votre ébauche de formulaire dans Crentral et essayez le pour vérifier qu'il fonctionne comme prévu.
 
-Update a problem's status
+Mettre à jour le statut des problèmes
 --------------------------
 
-You can now capture information about problems that are addressed or that still need action. However, this is not that useful because problems that have been addressed are still visible from the ``Address problem`` form which could lead to confusion and duplication of effort.
+Vous pouvez désormais saisir des informations sur les problèmes qui ont été résolus ou qui nécessitent encore une action. Mais cela n'est pas très pratique de voir les problmes résolus dans le formulaire ``Résoudre un problème``, cela peut en effet induire les agents en erreur et entraîner une perte de temps passé sur des problèmes déjà résolus.
 
-We need to filter out addressed problems from the select in ``Address problem`` so that it only shows problems that require action. 
+Nous devons trier et exclure les problèmes résolus de la liste de choix proposée dans le formulaire ``Résoudre un problème``, afin de proposer les seuls problèmes nécessitant une action. 
 
-Let's update a problem Entity's status when the ``Address problem`` form is filled out about it. We'll then be able to filter out ``problems`` with a ``status`` of ``addressed``.
+Mettons à jour le statut d'une Entité de la liste ``problems`` quand le formulaire ``Résoudre un problème`` est rempli. Nous pourrons alors filtrer les ``problems`` ayant le ``status`` ``resolu``.
 
 #. Declare that this form's submissions should update Entities in the ``problems`` Entity List:
 
-   #. Go to the ``entities`` sheet of the ``Address problem`` form.
+   #. Go to the ``entities`` sheet of the ``Résoudre un problème`` form.
    #. Dans la colonne ``list_name``, entrez ``problems``
    #. Delete the ``label`` column if it exists because this form does not need to update the label of ``problem`` Entities.
    #. In the ``entity_id`` column (you may need to add it), put ``${problem}`` to indicate that the value of the ``problem`` form field represents the unique identifier of the ``problem`` Entity to update.
@@ -196,7 +196,7 @@ Try out the full workflow
 
 Let's report a few problems using the web form.
 
-#. In Central, go to your project or the server landing page and then click on the ``*`` icon to the right of the ``Report a problem`` form. That icon and the number next to it represent the total number of current submissions. Clicking it will jump directly to the :guilabel:`Submissions` tab.
+#. In Central, go to your project or the server landing page and then click on the ``*`` icon to the right of the ``Signaler un problème`` form. That icon and the number next to it represent the total number of current submissions. Clicking it will jump directly to the :guilabel:`Submissions` tab.
 
    .. image:: /img/tutorial-community-reporting/problem-report-project.*
     :alt: The list of forms in the project with the cursor hovering over the total submission count.
@@ -211,7 +211,7 @@ You could also address problems using the web form but to get the map view, let'
 #. Create a new App User with name ``Employee1``.
 #. Scan the App User QR code from Collect.
 #. Click on the :guilabel:`Form Access` tab.
-#. Give ``Employee1`` access to the ``Address a problem`` form. You can optionally also given it access to ``Report a problem``.
+#. Give ``Employee1`` access to the ``Address a problem`` form. You can optionally also given it access to ``Signaler un problème``.
 #. Open the ``Address a problem`` form and address some problems! Make sure to tap the refresh button in :guilabel:`Start new form` before each problem resolution (⟳) to get the latest status updates.
 
 You now have two forms that work together to support a problem reporting and resolution workflow that can be applied to many different environments.
