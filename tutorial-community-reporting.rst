@@ -5,9 +5,7 @@ Tutoriel sur les Entités : Signalements de problèmes
 
 De nombreuses organisations utilisent des formulaires pour recueillir divers signalements de la part de leurs communautés :
 
-* Les hôpitaux demandent aux patients et aux soignants de signaler les problèmes d'insalubrité ou de fournitures manquantes.
-* les réprésentants des étudiants demandent aux autres étudiants de faire des suggestions d'améliorations de leur école
-* Les munbicipalités demandent à leurs habitants de signaler les lampadaires cassés, les arbres tombés, etc.
+* Par exemple les munbicipalités demandent à leurs habitants de signaler les lampadaires cassés, les arbres tombés, les trous dans la chaussée, etc.
 
 Dans ce tutoriel, vous utiliserez les entités pour mettre en place un flux de travail dans lequel les habitants d'une ville signalent des problèmes, que les employés de la ville peuvent ainsi résoudre.
 
@@ -24,7 +22,7 @@ Objectifs
 .. _tutorial-entities-capture-problem:
 
 Saisir les signalements de problèmes à l'aide d'un simple formulaire
--------------------------------------------
+--------------------------------------------------------------------
 
 .. seealso::
     Si vous n'avez pas encore l'habitude de construire des formulaires XLSForms, commencez par :doc:`xlsform-first-form`.
@@ -39,7 +37,7 @@ Vous pouvez vous arréter ici et construire une chaine de traitements autour de 
 Cette approche nécessite des interventions manuelles et de la coordination avec une feuille de calcul, les deux aspects pouvant être source d'erreur et chronophages. Utilisons plutôt les Entités d'ODK pour aider la gestion des problèmes en temps réel.
 
 Créer des entités pour chaque signalement
--------------------------------------------
+-----------------------------------------
 
 Nous aimerions que les signalements soit disponibles dans un autre formlulaire afin que les employs puissent les prendre en charge et résoudre les problèmes. Pour cela dans ODK, nous pouvons utiliser les entités. Une entité représente un objet unique qui peut être partagé entre différents formulaitres (voir :doc:`central-entities`).
 
@@ -91,7 +89,7 @@ Créons maintenant un second formulaire qui sera utilisé par les employés muni
 #. Allez dans la feuille ``settings``.
 #. Dans la colonne ``form_title``, renseignez un titre qui sera lu par les utilisateurs du formulaire : ``Address a problem``
 #. Dans la colonne ``form_id``, insérez un identifiant qui identifie de manière unique ce formulaire : ``address_problem``
-#. Ajouter un groupe contenant une "liste de champs" pour afficher plusieurs questions sur un même écran:
+#. Ajouter un groupe contenant une "liste de champs" pour afficher plusieurs questions sur un même écran :
 
    #. Allez à la feuille ``survey``.
    #. Dans la colonne ``type``, entrez ``begin_group``
@@ -165,34 +163,35 @@ Nous devons trier et exclure les problèmes résolus de la liste de choix propos
 
 Mettons à jour le statut d'une Entité de la liste ``problems`` quand le formulaire ``Résoudre un problème`` est rempli. Nous pourrons alors filtrer les ``problems`` ayant le ``status`` ``resolu``.
 
-#. Declare that this form's submissions should update Entities in the ``problems`` Entity List:
+#. Déclarez que les soumissions de ce formulaire peuvent mettre à jour des Entités d ela liste d'entités ``problems`` :
 
-   #. Go to the ``entities`` sheet of the ``Résoudre un problème`` form.
+   #. Allez à la feuille ``entities`` du formulaire ``Résoudre un problème``.
    #. Dans la colonne ``list_name``, entrez ``problems``
-   #. Delete the ``label`` column if it exists because this form does not need to update the label of ``problem`` Entities.
-   #. In the ``entity_id`` column (you may need to add it), put ``${problem}`` to indicate that the value of the ``problem`` form field represents the unique identifier of the ``problem`` Entity to update.
+   #. Supprimez la colonne ``label`` si elle existe car ce foirmulaire n'a pas besoin de mettre à jour cette propriété es Entités ``problem``.
+   #. Dans la colonne ``entity_id`` (vous pourriez devoir l'ajouter), mettez ``${problem}`` pour indiquer que la valeur du champ ``problem`` du formulaire est l'identifiant unique de l'Entité ``problem`` à mettre à jour.
 
-#. Update the value of the ``status`` Entity property:
+#. ettez à jour la valeur de la propriété ``status`` de l'Entité :
 
    #. Allez à la feuille ``survey``.
-   #. In the ``save_to`` column (you may need to add it) for the ``status`` field, put ``status``
+   #. Dans la colonne ``save_to`` (vous pourriez devoir l'ajouter) du champ ``status``, mettez ``status``
 
-#. Filter out problems with a status of ``addressed``
+#. Exfiltrez les problèmes ayant le status ``addressed``
 
-   #. In the ``choice_filter`` column for the row of the question named ``problem``, put ``status != 'addressed'`` to indicate that only problems with a status other than ``'addressed'`` should be included.
+   #. Dans la colonne ``choice_filter`` de la ligne de la question nommée ``problem``, mettez ``status != 'addressed'`` pour indiquer que seuls les problèmes avec un statut autre que ``'addressed'`` peuvent être proposés.
 
    .. note::
-     Using a filter like this means it will not be possible to edit submissions on the server because the selected Entity that was addressed by the submission will be filtered out on edit. In many Entity-based workflows, submission edits are unnecessary and can be avoided. In this workflow you can allow them by changing the choice filter to `status != 'addressed' or name = current()`.
+   	   
+   	 Utiliser un filtre comme celui-ci signifie qu'il ne sera pas possible de modifier les soumissions sur le serveur, car l'entité sélectionnée qui a été résolue par la soumission sera filtrée lors de la modification. Dans de nombreux flux de travail basés sur les entités, les modifications des soumissions ne sont pas utiles et peuvent être évitées. Dans ce workflow, vous pouvez les autoriser en changeant le "choice_filter" en `status != 'addressed' or name = current()`.
 
-#. Fix any form conversion errors and then publish the form. Entity updates currently only work with a published form, just like Entity creation.
+#. Corrigez tous les problèmes identifiés lors de la conversion puis publiez le formulaire. Les mises à jour d'entités ne fonctionnent actuellement qu'avec les formulaires publiés (pas les ébauches), comme les création d'Entités.
 
 .. image:: /img/tutorial-community-reporting/address-problem.*
-    :alt: A form for addressing problems.
+    :alt: Un formulaire pour résoudre les problèmes.
 
-See the working `Address a problem <https://docs.google.com/spreadsheets/d/1C_WrfD4_9QuycO_pgzE8duw9kaOxAB3CfPOb0HNOQfU>`_ form.
+Voir le formulaire fonctionnel `Résoudre un problème <https://docs.google.com/spreadsheets/d/1C_WrfD4_9QuycO_pgzE8duw9kaOxAB3CfPOb0HNOQfU>`_.
 
-Try out the full workflow
---------------------------
+Essayez le workflow dans son ensemble
+-------------------------------------
 
 Let's report a few problems using the web form.
 
