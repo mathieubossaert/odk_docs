@@ -15,7 +15,7 @@ Dans ce tutoriel, vous utiliserez les entités pour mettre en place un flux de t
    `Vidéo des coulisses <https://youtu.be/919SIU41UQA>`_ du développement de ce tutoriel.
 
 Objectifs
------
+---------
 
 * Créer des entités à partir de soumissions de formulaires
 * Accéder aux entités dans formulaire de suivi
@@ -157,7 +157,7 @@ Vous pouvez maintenant compléter le formulaire ``Résoudre un problème`` pour 
 #. Mettez à jour votre ébauche de formulaire dans Crentral et essayez le pour vérifier qu'il fonctionne comme prévu.
 
 Mettre à jour le statut des problèmes
---------------------------
+-------------------------------------
 
 Vous pouvez désormais saisir des informations sur les problèmes qui ont été résolus ou qui nécessitent encore une action. Mais cela n'est pas très pratique de voir les problmes résolus dans le formulaire ``Résoudre un problème``, cela peut en effet induire les agents en erreur et entraîner une perte de temps passé sur des problèmes déjà résolus.
 
