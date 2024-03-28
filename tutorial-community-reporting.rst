@@ -91,22 +91,22 @@ Afficher les problèmes signalés sur une carte
 
 Créons maintenant un second formulaire qui sera utilisé par les employés municipaux pour voir les signalements sur une carte.
 
-#. Créez un nouveau formualire à partir du :doc:`modèle de XLSForm <xlsform>`. Nommez le fichier ``Résoudre un problème``.
+#. Créez un nouveau formulaire à partir du :doc:`modèle de XLSForm <xlsform>`. Nommez le fichier ``Résoudre un problème``.
 #. Allez dans la feuille ``settings``.
 #. Dans la colonne ``form_title``, renseignez un titre qui sera lu par les utilisateurs du formulaire : ``Résoudre un problème``
-#. Dans la colonne ``form_id``, insérez un identifiant qui identifie de manière unique ce formulaire : ``address_problem``
+#. Dans la colonne ``form_id``, insérez un identifiant qui identifie de manière unique ce formulaire : ``resoudre_un_probleme``
 #. Ajouter un groupe contenant une "liste de champs" pour afficher plusieurs questions sur un même écran :
 
    #. Allez à la feuille ``survey``.
    #. Dans la colonne ``type``, entrez ``begin_group``
    #. Dans la colonne ``name``, entrez ``entité``
    #. Dans la colonne ``appearance``, entrez ``field-list``
-#. Ajoutez une question permettant de sélectionner les problèmes reportés sur une carte :
+#. Ajoutez une question permettant de sélectionner les problèmes signalés sur une carte :
 
    #. Dans la colonne ``type``, entrez ``select_one_from_file problemes.csv`` qui sera automatiquement liée à la liste d'Entités ``problemes`` du fait de l'emploi du nom de fichier ``problemes.csv``.
 	  
 	  .. warning::
-		 Le nom de fichier spécifié est sensible à la casse et doit correspondre exactement au nom de la Liste d'Entités utilisé dans le formulaire de signalement de problèmes, sinon les deux formulaires ne partageront pas d'Entités.
+		 Le nom de fichier spécifié est sensible à la casse et doit correspondre exactement au nom de la Liste d'Entités utilisée dans le formulaire de signalement de problèmes, sinon les deux formulaires ne partageront pas d'Entités.
 
    #. Dans la colonne ``name``, entrez ``probleme``
    #. Dans la colonne ``appearance``, entrez ``map``
@@ -119,10 +119,10 @@ Créons maintenant un second formulaire qui sera utilisé par les employés muni
 	  .. note::
 		 Ne vous inquiétez pas si cela ne vous est pas familier. Copier le code tel qu'il est, vous pourrez en apprendre plus dans la feuille ``List lookups`` du :doc:`modèle de XLSForm<xlsform>`.
 
-#. Fermer le groupe de "liste de champs" :
+#. Fermer le groupe contenant la "liste de champs" :
 
    #. Dans la colonne ``type``, entrez ``end_group``
-#. Chargez le formulaire sur Central dans le même projet que le formulaire ``Signaler un problème`` et essayez ce problème. Si vous utilisez le QR code de l'ébauche dans l'application mobile Collect, vous verrez une carte de tous les signalements. Si vous utilisez le formulaire web pour tester, vous verrez une liste des signalements identifiés par leur étiquette (parce que la selection sur carte n'est pas encore implémentée dans enketo)
+#. Chargez ce formulaire sur Central dans le même projet que le formulaire ``Signaler un problème`` et essayez son ébauche. Si vous utilisez le QR code de l'ébauche dans l'application mobile Collect, vous verrez une carte de tous les signalements. Si vous utilisez le formulaire web pour tester, vous verrez une liste des signalements identifiés par leur étiquette (parce que la sélection sur carte n'est pas encore implémentée dans enketo)
 
 Vous pouvez maintenant voir les problèmes signalés sur une carte ! Quand un nouveau problème sera signalé, il apparaitra dans le formulaire de suivi dés qu'il sera mis à jour. Si vous êtes en ligne, les mises  à jour sont réalisées automatiquement toutes les 15 minutes.
 
@@ -158,7 +158,7 @@ Vous pouvez maintenant compléter le formulaire ``Résoudre un problème`` pour 
    #. Dans la colonne ``list_name``, entrez ``statuts``
    #. Dans la colonne ``name``, entrez ``necessite_suivi``
    #. Dans la colonne ``label``, entrez ``Nécesiste un suivi``
-#. Mettez à jour votre ébauche de formulaire dans Central et essayez le pour vérifier qu'il fonctionne comme prévu.
+#. Mettez à jour votre ébauche de formulaire dans Central et essayez la pour vérifier que le formulaire fonctionne comme prévu.
 
 Mettre à jour le statut des problèmes
 -------------------------------------
@@ -181,15 +181,15 @@ Faisons en sorte que le statut d'une Entité de la liste ``problemes`` soit mis 
    #. Allez à la feuille ``survey``.
    #. Dans la colonne ``save_to`` (vous pourriez devoir l'ajouter) du champ ``statut``, mettez ``statut``
 
-#. Exfiltrez les problèmes ayant le statut ``resolu``
+#. "Exfiltrez" les problèmes ayant le statut ``resolu``
 
-   #. Dans la colonne ``choice_filter`` de la ligne de la question nommée ``problem``, mettez ``statut != 'resolu'`` pour indiquer que seuls les problèmes avec un statut autre que ``'resolu'`` peuvent être proposés.
+   #. Dans la colonne ``choice_filter`` de la ligne de la question ``problem``, mettez ``statut != 'resolu'`` pour indiquer que seuls les problèmes avec un statut autre que ``'resolu'`` peuvent être proposés.
 
    .. note::
    	   
-   	 Utiliser un filtre comme celui-ci signifie qu'il ne sera pas possible de modifier les soumissions sur le serveur, car l'entité sélectionnée qui a été résolue par la soumission sera filtrée lors de la modification. Dans de nombreux flux de travail basés sur les entités, les modifications des soumissions ne sont pas utiles et peuvent être évitées. Dans ce workflow, vous pouvez les autoriser en changeant le "choice_filter" en `status != 'resolu' or name = current()`.
+   	 Utiliser un filtre comme celui-ci signifie qu'il ne sera pas possible de modifier les soumissions sur le serveur, car l'entité sélectionnée qui a été résolue dans cette soumission sera filtrée lors de la modification. Dans de nombreux flux de travail basés sur les entités, les modifications des soumissions ne sont pas utiles et peuvent être évitées. Dans ce workflow, vous pouvez les autoriser en changeant le "choice_filter" en `status != 'resolu' or name = current()`.
 
-#. Corrigez tous les problèmes identifiés lors de la conversion puis publiez le formulaire. Les mises à jour d'entités ne fonctionnent actuellement qu'avec les formulaires publiés (pas les ébauches), comme les création d'Entités.
+#. Corrigez tous les problèmes identifiés lors de la conversion du formulaire puis publiez le. Les mises à jour d'entités ne fonctionnent actuellement qu'avec les formulaires publiés (pas les ébauches), comme les création d'Entités.
 
 .. image:: /img/tutorial-community-reporting/address-problem.*
     :alt: Un formulaire pour résoudre les problèmes.
@@ -229,5 +229,5 @@ A vous de jouer
 
 #. Pouvez-vous ajouter aux Entités une propriété ``marker-color`` définie à ``#FFFF00`` (jaune) si le statut du problème est ``necessite_suivi``? (astuce : utilisez un calcul (``calculation``) avec  ``if``)
 #. Pouvez-vous ajouter aux Entités une propriété ``marker-symbol`` contenant ``❗️`` si le statut du problème est ``necessite_suivi``?
-#. Pouvez vous afficher les problèmes résolus sur la carte avec le symbole ✅ plutôt que de les filtrer hors de la liste ?
-#. Pouvez vous définir une contrainte qui affiche une erreur quand un problème résolu est selectionné ? (remarque : cela est incompatible avec l'édition des soumissions sur le serveur, comme avec le "choice filter" original)
+#. Pouvez-vous afficher les problèmes résolus sur la carte avec le symbole ✅ plutôt que de les filtrer hors de la liste ?
+#. Pouvez-vous définir une contrainte qui affiche une erreur quand un problème résolu est sélectionné ? (remarque : cela est incompatible avec l'édition des soumissions sur le serveur, comme avec le "choice filter" original)
