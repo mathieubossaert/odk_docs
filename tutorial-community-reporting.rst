@@ -46,7 +46,7 @@ Démarrons en prenant notre :ref:`Signaler un problème <tutorial-entities-captu
 
 #. Ouvrez ou créez la feuille ``entities`` dans le formualire ``Signaler un problème``.
 #. Dans la colonne ``list_name``, entrez le nom de la Liste d'Entités dans laquelle vous souhaitez créer des Entités : ``problemes``. Ce nom sera généralement un nom pluriel représentant une collection des objets que vous souhaitez paratger entre vos formulaires. 
-#. Dans la colonne ``label``, entrez une expression qui définira l'étiquette de chaque signalement : ``${problem_title}``. Cette étiquerre sera utilisée dans Cnetral pour identifier chaque entité ainsi que dans les selections définies dans les formulaires de suivi.
+#. Dans la colonne ``label``, entrez une expression qui définira l'étiquette de chaque signalement : ``${titre_du_probleme}``. Cette étiquerre sera utilisée dans Cnetral pour identifier chaque entité ainsi que dans les selections définies dans les formulaires de suivi.
 
 Ces ajouts entraineront, à chaque soumission de formulaire, la création d'entités ``problemes`` avec une étiquette définie par l'utilisateur et un identifiant unique généré automatiquement. Dans ce cas, vous voulez aussi rendre disponible les détails et la localisation du problème dans les formualires de suivi..
 
@@ -94,7 +94,7 @@ Créons maintenant un second formulaire qui sera utilisé par les employés muni
 
    #. Allez à la feuille ``survey``.
    #. Dans la colonne ``type``, entrez ``begin_group``
-   #. Dans la colonne ``name``, entrez ``entity``
+   #. Dans la colonne ``name``, entrez ``entité``
    #. Dans la colonne ``appearance``, entrez ``field-list``
 #. Ajoutez une question permettant de sélectionner les problèmes reportés sur une carte :
 
@@ -103,12 +103,12 @@ Créons maintenant un second formulaire qui sera utilisé par les employés muni
       .. warning::
          Le nom de fichier spécifié est sensible à la casse et doit correspondre exactement au nom de la Liste d'Entités utilisé dans le formulaire de signalement de problèmes, sinon les deux formulaires ne partageront pas d'Entités.
 
-   #. Dans la colonne ``name``, entrez ``problem``
+   #. Dans la colonne ``name``, entrez ``probleme``
    #. Dans la colonne ``appearance``, entrez ``map``
 #. Ajoutez une question de type note pour afficher les détails du signalement sélectionné :
   
    #. Dans la colonne ``type``, entrez ``note``
-   #. Dans la colonne ``name``, entrez ``problem_details``
+   #. Dans la colonne ``name``, entrez ``details_du_probleme``
    #. Dans la colonne ``label``, entrez ``Détails : instance('problemes')/root/item[name=${problem}]/details``
 
       .. note::
@@ -135,13 +135,13 @@ Vous pouvez maintenant compléter le formulaire ``Résoudre un problème`` pour 
 #. Ajoutez une question de type "texte" pour décrire l'action entreprise :
 
    #. Dans la colonne ``type``, entrez ``text``
-   #. Dans la colonne ``name``, entrez ``action_taken``
-   #. Dans la colonne ``label``, entrez ``Describe the action you have taken``
+   #. Dans la colonne ``name``, entrez ``action_entreprise``
+   #. Dans la colonne ``label``, entrez ``Décrivez les actions entreprises``
 #. Ajoutez une question de type "select" pour définir le nouveau statut du problème :
 
    #. Dans la colonne ``type``, entrez ``select_one statuts``
    #. Dans la colonne ``name``, entrez ``statut``
-   #. Dans la colonne ``label``, entrez ``What is the problem statut after your action?``
+   #. Dans la colonne ``label``, entrez ``Quel est le satut du problème aprés intervention ?``
 #. Allez à la feuille ``choices``.
 #. Ajoutez une option pour les problèmes résolus :
 
@@ -168,8 +168,8 @@ Faisons en sorte que le statut d'une Entité de la liste ``problemes`` soit mis 
 
    #. Allez à la feuille ``entities`` du formulaire ``Résoudre un problème``.
    #. Dans la colonne ``list_name``, entrez ``problemes``
-   #. Supprimez la colonne ``label`` si elle existe car ce formulaire n'a pas besoin de mettre à jour cette propriété es Entités ``problem``.
-   #. Dans la colonne ``entity_id`` (vous pourriez devoir l'ajouter), mettez ``${problem}`` pour indiquer que la valeur du champ ``problem`` du formulaire est l'identifiant unique de l'Entité ``problem`` à mettre à jour.
+   #. Supprimez la colonne ``label`` si elle existe car ce formulaire n'a pas besoin de mettre à jour cette propriété des Entités ``problemes``.
+   #. Dans la colonne ``entity_id`` (vous pourriez devoir l'ajouter), mettez ``${probleme}`` pour indiquer que la valeur de la question ``probleme`` du formulaire est l'identifiant unique de l'Entité ``problem`` à mettre à jour.
 
 #. Mettez à jour la valeur de la propriété ``statut`` de l'Entité :
 
@@ -182,7 +182,7 @@ Faisons en sorte que le statut d'une Entité de la liste ``problemes`` soit mis 
 
    .. note::
    	   
-   	 Utiliser un filtre comme celui-ci signifie qu'il ne sera pas possible de modifier les soumissions sur le serveur, car l'entité sélectionnée qui a été résolue par la soumission sera filtrée lors de la modification. Dans de nombreux flux de travail basés sur les entités, les modifications des soumissions ne sont pas utiles et peuvent être évitées. Dans ce workflow, vous pouvez les autoriser en changeant le "choice_filter" en `statut != 'addressed' or name = current()`.
+   	 Utiliser un filtre comme celui-ci signifie qu'il ne sera pas possible de modifier les soumissions sur le serveur, car l'entité sélectionnée qui a été résolue par la soumission sera filtrée lors de la modification. Dans de nombreux flux de travail basés sur les entités, les modifications des soumissions ne sont pas utiles et peuvent être évitées. Dans ce workflow, vous pouvez les autoriser en changeant le "choice_filter" en `status != 'resolu' or name = current()`.
 
 #. Corrigez tous les problèmes identifiés lors de la conversion puis publiez le formulaire. Les mises à jour d'entités ne fonctionnent actuellement qu'avec les formulaires publiés (pas les ébauches), comme les création d'Entités.
 
@@ -194,7 +194,7 @@ Voir le formulaire fonctionnel `Résoudre un problème <https://docs.google.com/
 Essayez le workflow dans son ensemble
 -------------------------------------
 
-Signalons quelques problèmes avec le fromiulaire web.
+Signalons quelques problèmes avec le fromulaire web.
 
 #. Dans Central, allez à la page de votre projet ou sur la page d'accueil et cliquez sur l'îcone ``*`` située à droite du formulaire ``Signaler un problème``. Cette îcone et le nombre inscrit à coté représente le nombre actuel de soumissions. Cliquer dessus vous enverra directement à l'onglet  :guilabel:`Submissions`.
 
