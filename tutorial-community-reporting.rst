@@ -22,7 +22,7 @@ Objectifs
 
 .. _tutorial-entities-capture-problem:
 
-Saisir les signalements de problèmes à l'aide d'un simple formulaire
+Saisir les signalements de problèmes à l'aide d'un formulaire simple
 --------------------------------------------------------------------
 
 .. seealso::
