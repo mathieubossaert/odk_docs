@@ -26,12 +26,12 @@ Saisir les signalements de problèmes à l'aide d'un simple formulaire
 --------------------------------------------------------------------
 
 .. seealso::
-    Si vous n'avez pas encore l'habitude de construire des formulaires XLSForms, commencez par :doc:`xlsform-first-form`.
+	Si vous n'avez pas encore l'habitude de construire des formulaires XLSForms, commencez par :doc:`xlsform-first-form`.
 
 Un formulaire de signalement peut être très simple. Pour que les employés municipaux puissent trouver et résoudre les problèmes signalés, il suffit de saisir un titre, une description du problème et un lieu. Pour cela, vous pouvez créer votre propre formulaire ou `utiliser notre exemple <https://docs.google.com/spreadsheets/d/1ROJHoqnYZ1i7vZ3-7MKxwcZLkEmhmUiwN06EG1GONOc/edit?usp=sharing>`_.
 
 .. image:: /img/tutorial-community-reporting/problem-report-simple.*
-    :alt: Un formulaire simple de signalement de problème. Il enregistre le titre du problème, sa desciption et son emplacement.
+	:alt: Un formulaire simple de signalement de problème. Il enregistre le titre du problème, sa desciption et son emplacement.
 
 Vous pouvez vous arréter ici et construire une chaine de traitements autour de ce simple formulaire. Par exemple, vous pourriez publier le formulaire avec un lien d'accès public :ref:`Lien d'Accès Public <central-submissions-public-link>`, créer un QR code contenant ce lien (en utilisant un service comme `Celui d'Adobe' <https://new.express.adobe.com/tools/generate-qr-code>`_), et l'afficher dans l'espace public afin que les habitants s'en servent. Alors les employés municipaux pourront :ref:`afficher les soumissions du formulaire dans Excel <central-submissions-odata>` et ajouter une colonne dans une feuille de calcul partagée pour gérer la résolution des nouveaux problèmes.
 
@@ -46,7 +46,7 @@ Démarrons en prenant notre :ref:`Signaler un problème <tutorial-entities-captu
 
 #. Ouvrez ou créez la feuille ``entities`` dans le formualire ``Signaler un problème``.
 #. Dans la colonne ``list_name``, entrez le nom de la Liste d'Entités dans laquelle vous souhaitez créer des Entités : ``problemes``. Ce nom sera généralement un nom pluriel représentant une collection des objets que vous souhaitez paratger entre vos formulaires. 
-#. Dans la colonne ``label``, entrez une expression qui définira l'étiquette de chaque signalement : ``${titre_du_probleme}``. Cette étiquerre sera utilisée dans Cnetral pour identifier chaque entité ainsi que dans les selections définies dans les formulaires de suivi.
+#. Dans la colonne ``label``, entrez une expression qui définira l'étiquette de chaque signalement : ``${titre_du_probleme}``. Cette étiquerre sera utilisée dans Central pour identifier chaque entité ainsi que dans les selections définies dans les formulaires de suivi.
 
 Ces ajouts entraineront, à chaque soumission de formulaire, la création d'entités ``problemes`` avec une étiquette définie par l'utilisateur et un identifiant unique généré automatiquement. Dans ce cas, vous voulez aussi rendre disponible les détails et la localisation du problème dans les formualires de suivi..
 
@@ -56,19 +56,19 @@ Ces ajouts entraineront, à chaque soumission de formulaire, la création d'enti
 #. Dans la colonne ``save_to`` du champ de formulaire qui capture la localisation du signalement, entrez le nom de la propriété de l'Entité où stocker cette valeur : ``geometry``. Utiliser le nom particulier ``geometry`` pour cette propriété vous pemrettra d'afficher les ``problemes`` sur une carte dans le formualire de suivi (voir :ref:`select one from map <select-from-map>`).
 
 .. image:: /img/tutorial-community-reporting/problem-report-entities.*
-    :alt: Un formulaire simple de signalement de problèmes. Il collecte le titre du problème, sa descrption, sa localisation et créée les Entités correspondantes.
+	:alt: Un formulaire simple de signalement de problèmes. Il collecte le titre du problème, sa descrption, sa localisation et créée les Entités correspondantes.
 
 Voir le formulaire fonctionnel `Signaler un problème <https://docs.google.com/spreadsheets/d/1q3dqEUxHtgvOqZ_eusTQZ_Nvocwrk4zWXi9gTNqxVTA/edit?usp=sharing>`_ .
 
 Vérifiez que la création d'Entité fonctionne
 --------------------------------------------
 
-Actuellement les entités ne peuvent être créées en mode "Ebauche de formulaire", vous devez donc publier votre formulaire pour le tester.
+Actuellement les entités ne peuvent être créées en mode "Ébauche de formulaire", vous devez donc publier votre formulaire pour le tester.
 
 #. Rendez-vous dans un projet dédié aux tests de formulaires et aux tutoriels, créez en un si vous n'en avez pas (voir :ref:`the guide on testing forms <guide-testing-project>`).
    
    .. warning::
-       Vous pouvez créer un projet existant contenant de vrais formulaires mais notez que les listes d'entités ne peuvent pas être supprimées pour le moement, et donc que les signalements créés pendant vos tests existeront jusqu'à ce que Central permette leur suppression.
+	   Vous pouvez créer un projet existant contenant de vrais formulaires mais notez que les listes d'entités ne peuvent pas être supprimées pour le moement, et donc que les signalements créés pendant vos tests existeront jusqu'à ce que Central permette leur suppression.
 
 #. Cliquez sur le bouton :guilabel:`New` et chargez votre nouveau formulaire. Selon comment vous aurez créé votre formulaire, vous devrez peut-être d'abord le télécharger puis l'exporter en XLSX.
 
@@ -76,10 +76,10 @@ Actuellement les entités ne peuvent être créées en mode "Ebauche de formulai
 
 #. Cliquez sur l'onglet :guilabel:`Submissions` puis sur le bouton :guilabel:`New` afin d'utilise rle fomulaire web pour créer une ou plusieurs soumissions.
 
-#. Rafraichissez la table des soumissions pour voir les nouvelles puis cliquez sur le bouton :guilabel:`More` de l'une d'entre elles pour en afficher les détails. Vous devriez voir que cette soumission a créé une Entité dans la liste ``problemes`` :
+#. Rafraîchissez la table des soumissions pour voir les nouvelles puis cliquez sur le bouton :guilabel:`More` de l'une d'entre elles pour en afficher les détails. Vous devriez voir que cette soumission a créé une Entité dans la liste ``problemes`` :
 
    .. image:: /img/tutorial-community-reporting/problem-report-submission.*
-     :alt: Détail d'une soumission du formulaire ``Signaler un problème`` qui a créé une Entité.
+	 :alt: Détail d'une soumission du formulaire ``Signaler un problème`` qui a créé une Entité.
 
 Afficher les problèmes signalés sur une carte
 ---------------------------------------------
@@ -99,9 +99,9 @@ Créons maintenant un second formulaire qui sera utilisé par les employés muni
 #. Ajoutez une question permettant de sélectionner les problèmes reportés sur une carte :
 
    #. Dans la colonne ``type``, entrez ``select_one_from_file problemes.csv`` qui sera automatiquement liée à la liste d'Entités ``problemes`` du fait de l'emploi du nom de fichier ``problemes.csv``.
-      
-      .. warning::
-         Le nom de fichier spécifié est sensible à la casse et doit correspondre exactement au nom de la Liste d'Entités utilisé dans le formulaire de signalement de problèmes, sinon les deux formulaires ne partageront pas d'Entités.
+	  
+	  .. warning::
+		 Le nom de fichier spécifié est sensible à la casse et doit correspondre exactement au nom de la Liste d'Entités utilisé dans le formulaire de signalement de problèmes, sinon les deux formulaires ne partageront pas d'Entités.
 
    #. Dans la colonne ``name``, entrez ``probleme``
    #. Dans la colonne ``appearance``, entrez ``map``
@@ -111,8 +111,8 @@ Créons maintenant un second formulaire qui sera utilisé par les employés muni
    #. Dans la colonne ``name``, entrez ``details_du_probleme``
    #. Dans la colonne ``label``, entrez ``Détails : instance('problemes')/root/item[name=${problem}]/details``
 
-      .. note::
-      	 Ne vous inquiétez pas si cela ne vous est pas familier. Copier le code tel qu'il est, vous pourrez en apprendre plus dans la feuille ``List lookups`` du :doc:`modèle de XLSForm<xlsform>`.
+	  .. note::
+		 Ne vous inquiétez pas si cela ne vous est pas familier. Copier le code tel qu'il est, vous pourrez en apprendre plus dans la feuille ``List lookups`` du :doc:`modèle de XLSForm<xlsform>`.
 
 #. Fermer le groupe de "liste de champs" :
 
@@ -153,7 +153,7 @@ Vous pouvez maintenant compléter le formulaire ``Résoudre un problème`` pour 
    #. Dans la colonne ``list_name``, entrez ``statuts``
    #. Dans la colonne ``name``, entrez ``necessite_suivi``
    #. Dans la colonne ``label``, entrez ``Nécesiste un suivi``
-#. Mettez à jour votre ébauche de formulaire dans Crentral et essayez le pour vérifier qu'il fonctionne comme prévu.
+#. Mettez à jour votre ébauche de formulaire dans Central et essayez le pour vérifier qu'il fonctionne comme prévu.
 
 Mettre à jour le statut des problèmes
 -------------------------------------
@@ -206,9 +206,9 @@ Signalons quelques problèmes avec le fromulaire web.
 
 Vous pouvez prendre en charge quelques problèmes signalés avec le formualire web, mais pour bénéficier de la carte, utilisez l'application mobile Collect.
 
-#. Allez sur la page de votre projet dans Centrl.
+#. Allez sur la page de votre projet dans Central.
 #. Cliquez sur l'onglet :guilabel:`App Users`.
-#. Crééz in nouvel Uilisateur Mobile avec le nom ``Employe_1``.
+#. Crééz in nouvel Utilisateur Mobile avec le nom ``Employe_1``.
 #. Scannez le QR Code de cet utilisateur avec Collect.
 #. Cliquez sur l'onglet :guilabel:`Form Access`.
 #. Donnez à ``Employe_1`` l'accès au formulaire ``Résoudre un problème``. Vous pouvez ausi lui donner accès au formulaire ``Signaler un problème``.
@@ -217,7 +217,7 @@ Vous pouvez prendre en charge quelques problèmes signalés avec le formualire w
 Vous avez maintenant deux formulaires qui fonctionnent ensemble pour signaler et résoudre des problèmes, et qui peuvent aisèment être adaptés à d'autres contextes.
 
 .. note::
-    Les problèmes solutionés sont filtrés pour ne pas être affichés dans le formulaire ``Résoudre un problème`` mais sont toujours envoyés à tous les téléphones. Cela sera deviendra inopérent aprés plusieurs dizaines de milliers de problèmes. Dans une version future d'ODK, il sera possible d'archiver les Entités qui ne seront plus utiles.
+    Les problèmes solutionnés sont filtrés pour ne pas être affichés dans le formulaire ``Résoudre un problème`` mais sont toujours envoyés à tous les téléphones. Cela sera deviendra inopérent aprés plusieurs dizaines de milliers de problèmes. Dans une version future d'ODK, il sera possible d'archiver les Entités qui ne seront plus utiles.
 
 A vous de jouer
 ---------------
