@@ -27,7 +27,7 @@ Saisir les signalements de problèmes à l'aide d'un simple formulaire
 .. seealso::
     Si vous n'avez pas encore l'habitude de construire des formulaires XLSForms, commencez par :doc:`xlsform-first-form`.
 
-Un formulaire de signalement peut être très simple. Pour que les employés municipaux puissent trouver et résoudre les problèmes signalés, il suffit de saisir un titre, une description du problème et un lieu. Pour cela, vous pouvez créer votre propre formulaire ou utiliser notre exemple `use our example <https://docs.google.com/spreadsheets/d/1zhnRnjD3ZH_OwARAE1hY4__8nFta1LauCPaZbWyI2ag/edit#gid=1068911091>`_.
+Un formulaire de signalement peut être très simple. Pour que les employés municipaux puissent trouver et résoudre les problèmes signalés, il suffit de saisir un titre, une description du problème et un lieu. Pour cela, vous pouvez créer votre propre formulaire ou `utiliser notre exemple <https://docs.google.com/spreadsheets/d/1ROJHoqnYZ1i7vZ3-7MKxwcZLkEmhmUiwN06EG1GONOc/edit?usp=sharing>`_.
 
 .. image:: /img/tutorial-community-reporting/problem-report-simple.*
     :alt: Un formulaire simple de signalement de problème. Il enregistre le titre du problème, sa desciption et son emplacement.
@@ -216,7 +216,7 @@ Vous pouvez prendre en charge quelques problèmes signalés avec le formualire w
 Vous avez maintenant deux formulaires qui fonctionnent ensemble pour signaler et résoudre des problèmes, et qui peuvent aisèment être adaptés à d'autres contextes.
 
 .. note::
-    Les problèmes solutionnés sont filtrés pour ne pas être affichés dans le formulaire ``Address a problem`` mais sont toujours envoyés à tous les téléphones. Cela sera deviendra inopérent aprés plusieurs dizaines de milliers de problèmes. Dans une version future d'ODK, il sera possible d'archiver les Entités qui ne seront plus utiles.
+    Les problèmes solutionés sont filtrés pour ne pas être affichés dans le formulaire ``Address a problem`` mais sont toujours envoyés à tous les téléphones. Cela sera deviendra inopérent aprés plusieurs dizaines de milliers de problèmes. Dans une version future d'ODK, il sera possible d'archiver les Entités qui ne seront plus utiles.
 
 A vous de jouer
 ---------------
