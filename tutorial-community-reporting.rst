@@ -193,35 +193,35 @@ Voir le formulaire fonctionnel `Résoudre un problème <https://docs.google.com/
 Essayez le workflow dans son ensemble
 -------------------------------------
 
-Let's report a few problems using the web form.
+Signalons quelques problèmes avec le fromiulaire web.
 
-#. In Central, go to your project or the server landing page and then click on the ``*`` icon to the right of the ``Signaler un problème`` form. That icon and the number next to it represent the total number of current submissions. Clicking it will jump directly to the :guilabel:`Submissions` tab.
+#. Dans Central, allez à la page de votre projet ou sur la page d'accueil et cliquez sur l'îcone ``*`` située à droite du formulaire ``Signaler un problème``. Cette îcone et le nombre inscrit à coté représente le nombre actuel de soumissions. Cliquer dessus vous enverra directement à l'onglet  :guilabel:`Submissions`.
 
    .. image:: /img/tutorial-community-reporting/problem-report-project.*
-    :alt: The list of forms in the project with the cursor hovering over the total submission count.
+    :alt: la liste des formulaires du projet avec le curseur affichant au survol le nombre total de soumissions.
 
-#. Click the :guilabel:`New` button to initiate a new submission.
-#. Report a few problems in different locations.
+#. Cliquez sur le bouton :guilabel:`New` pour démarrer une nouvelle soumission.
+#. Signalez quelques problèmes en différents endroits.
 
-You could also address problems using the web form but to get the map view, let's use the Collect mobile app.
+Vous pouvez prendre en charge quelques problèmes signalés avec le formualire web, mais pour bénéficier de la carte, utilisez l'application mobile Collect.
 
-#. Go to your project page in Central.
-#. Click on the :guilabel:`App Users` tab.
-#. Create a new App User with name ``Employee1``.
-#. Scan the App User QR code from Collect.
-#. Click on the :guilabel:`Form Access` tab.
-#. Give ``Employee1`` access to the ``Address a problem`` form. You can optionally also given it access to ``Signaler un problème``.
-#. Open the ``Address a problem`` form and address some problems! Make sure to tap the refresh button in :guilabel:`Start new form` before each problem resolution (⟳) to get the latest status updates.
+#. Allez sur la page de votre projet dans Centrl.
+#. Cliquez sur l'onglet :guilabel:`App Users`.
+#. Crééz in nouvel Uilisateur Mobile avec le nom ``Employee1``.
+#. Scannez le QR Code de cet utilisateur avec Collect.
+#. Cliquez sur l'onglet :guilabel:`Form Access`.
+#. Donnez à ``Employee1`` l'accès au formulaire ``Address a problem``. Vous pouvez ausi lui donner accès au formulaire ``Signaler un problème``.
+#. Ouvrez le formulaire ``Address a problem`` et solutionnez quelques ! Assurez-vous de raffraichir la liste des formulaires disponibles en cliquant sur le bouton :guilabel:`Start new form` (⟳) afin de disposer des status les plus à jour.
 
-You now have two forms that work together to support a problem reporting and resolution workflow that can be applied to many different environments.
+Vous avez maintenant deux formulaires qui fonctionnent ensemble pour signaler et résoudre des problèmes, et qui peuvent aisèment être adaptés à d'autres contextes.
 
 .. note::
-    Addressed problems are filtered out of the ``Address a problem`` select but they are still sent to all devices. This will become impractical after tens of thousands of problems. In a future ODK version, it will be possible to archive Entities that are no longer needed.
+    Les problèmes solutionnés sont filtrés pour ne pas être affichés dans le formulaire ``Address a problem`` mais sont toujours envoyés à tous les téléphones. Cela sera deviendra inopérent aprés plusieurs dizaines de milliers de problèmes. Dans une version future d'ODK, il sera possible d'archiver les Entités qui ne seront plus utiles.
 
-Your turn
-----------
+A vous de jouer
+---------------
 
-#. Can you set a ``marker-color`` Entity property to ``#FFFF00`` (yellow) if the status is set to ``needs_followup``? (hint: use a ``calculation`` with ``if``)
-#. Can you set a ``marker-symbol`` Entity property to ``❗️`` if the status is set to ``needs_followup``?
-#. Can you show addressed problems on the map with a ✅ symbol instead of filtering them out?
-#. Can you specify a constraint to show an error when an addressed problem is selected? (note: this is incompatible with server-based submission edits, just like the original choice filter)
+#. Pouvez-vous ajouter aux Entités une propriété ``marker-color`` définie à ``#FFFF00`` (jaune) si le statut du problème est ``needs_followup``? (astuce : utilisez un calcul (``calculation``) avec  ``if``)
+#. Pouvez-vous ajouter aux Entités une propriété ``marker-symbol`` contenant ``❗️`` si le statut du problème est ``needs_followup``?
+#. Pouvez vous afficher les problèmes résolus sur la carte avec le symbole ✅ plutôt que de les filtrer hors de la liste ?
+#. Pouvez vous définir une contrainte qui affiche une erreur quand un problème résolu est selectionné ? (remarque : cela est incompatible avec l'édition des soumissions sur le serveur, comme avec le "choice filter" original)
